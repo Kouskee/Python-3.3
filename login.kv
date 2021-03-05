@@ -1,0 +1,102 @@
+#:include connected.kv
+
+<Login>:
+    BoxLayout
+        id: login_layout
+        orientation: 'vertical'
+        padding: [300,50,300,50]
+        spacing:10
+
+        Label:
+            text: 'Welcome'
+            font_size: 32
+
+        BoxLayout:
+            orientation: 'vertical' 
+            padding: [0,30,0,0]
+
+            Label:
+                text: 'Login'
+                font_size: 18
+                halign: 'center'
+                text_size: root.width-20, 20
+
+            TextInput:
+                id: login
+                multiline:False
+                font_size: 17
+
+        BoxLayout:
+            orientation: 'vertical'
+            padding: [0,0,0,30]
+
+            Label:
+                text: 'Password'
+                halign: 'center'
+                font_size: 18
+                text_size: root.width-20, 20
+
+            TextInput:
+                id: password
+                multiline:False
+                password:True
+                font_size: 17
+
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+
+            Button:
+                text: 'Вход'
+                font_size: 24
+                background_color: [.37, .89, .86, 1]
+				on_press: root.convert_calvariables() 
+
+            Button:
+                text: 'Регистрация'
+                font_size: 24
+                background_color: [.37, .89, .86, 1]
+
+                on_press: root.do_login(login.text, password.text)
+        
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                orientation: 'horizontal'
+                CheckBox:
+                    size_hint: 0.2, 1 
+                Label:
+                    text: 'запомнить пароль'
+                    halign: 'center'
+                    font_size: 14
+                    text_size: root.width-10, 15
+            BoxLayout:
+                padding:[50,0,0,0]
+                Label:
+                    text: 'Забыли пароль?'
+                    halign: 'center'
+                    font_size: 14
+                    text_size: root.width-10, 15
+
+<MessageBox>
+	messageForText:InputForText
+	id:messageBox
+	size_hint:.7,.4
+	auto_dismiss: False
+	title:'Уведомление'
+	background_color: [.60,.38,.39,1]
+	background_normal:''
+	
+	BoxLayout:
+		orientation: 'vertical'
+		TextInput:
+			id:InputForText
+			multiline: True
+			
+		Button:
+			text:'Закрыть'
+			size_hint:1,0.5
+			font_size:'19sp'
+
+			on_release:
+				messageBox.dismiss()
